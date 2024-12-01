@@ -9,15 +9,14 @@ import PopularBlogs from "./components/PopularBlogs";
 const App = () => {
   return (
     <BrowserRouter future={{ v7_relativeSplatPath: true }}>
-      <div className="flex h-screen">
+      <div className="flex  h-screen">
         <Sidebar />
 
-        <div className="rounded w-full flex justify-between flex-wrap">
+        <div className="rounded w-full flex justify-center flex-wrap">
           <Routes>
             <Route path="/" element={<MainContent />} />
             <Route path="/product/:id" element={<ProductPage />} />
           </Routes>
-
           <div>
             <TopSellers />
             <PopularBlogs />

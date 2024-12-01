@@ -31,12 +31,46 @@ const TopSellers = () => {
     fetchData();
   }, []);
 
+  const handleFollowClick = (index: number) => {
+    seAuthors((prev) =>
+      prev.map((author, i) =>
+        i === index ? { ...author, isFollowing: !author.isFollowing } : author
+      )
+    );
+  };
+
   return (
     <div
       className="bg-white p-5 mx-5 mt-[5rem]border w-[23rem] rounded
     "
     >
       <h2 className="text-xl font-bold mb-5">Top Sellers</h2>
+
+      <ul>
+        {authors.map((author, index) => (
+          <li key={index} className="flex items-center justify-between mb-4">
+            <section className="flex justify-center items-center">
+              <img
+                src={author.image}
+                alt={author.name}
+                className="w-[25%] h-[25%] justify-center rounded-full object-cover"
+              />
+              <span className="ml-4">{author.name}</span>
+            </section>
+
+            <button
+              onClick={() => handleFollowClick(index)}
+              className={`py-1 px-3 rounded ${
+                author.isFollowing
+                  ? "bg-red-500 text-white"
+                  : "bg-black text-white"
+              }`}
+            >
+              {author.isFollowing ? "UnFollow" : "Follow"}{" "}
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
